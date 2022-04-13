@@ -87,6 +87,9 @@ namespace QuickType
 
         [JsonProperty("subcategories")]
         public Link Subcategories { get; set; }
+        
+        [JsonProperty("articles")]
+        public Link Articles { get; set; }
 
         [JsonProperty("preview")]
         public Link Preview { get; set; }
