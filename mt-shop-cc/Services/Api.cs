@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using QuickType;
+using Xamarin.Forms;
 
 public class Api
 {
@@ -39,10 +40,11 @@ public class Api
         return Details.FromJson(json);
     }
 
-
-
-
-
+    public static ImageSource Img(Uri url)
+    {
+        var source = ImageSource.FromUri(url);
+        return source;
+    }
 
     private static async Task<string> CacheOrWeb(Uri url)
     {
