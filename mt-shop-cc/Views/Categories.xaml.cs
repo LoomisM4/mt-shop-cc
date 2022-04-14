@@ -14,20 +14,20 @@ namespace mtshopcc.Views
     public partial class Categories : ContentPage, IQueryAttributable
     {
         public ObservableCollection<Category> Items { get; set; }
-        private Uri url { get; set; }
+        private Uri Url { get; set; }
 
         public Categories()
         {
             InitializeComponent();
 
             Items = new ObservableCollection<Category> {};
-
+            
             MyListView.ItemsSource = Items;
         }
 
         public void ApplyQueryAttributes(IDictionary<string, string> query)
         {
-            this.url = new Uri(query["url"]);
+            Url = new Uri(query["url"]);
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -35,10 +35,11 @@ namespace mtshopcc.Views
             Category c = (Category) e.Item;
             if (c.Links.Subcategories != null)
             {
-                await Shell.Current.GoToAsync("subcategories?url={c.Links.Subcategories.Href}");
-            } else if (c.Links.Articles != null)
+                await Shell.Current.GoToAsync($"subcategories?url={c.Links.Subcategories.Href}");
+            } 
+            else if (c.Links.Articles != null)
             {
-                await Shell.Current.GoToAsync("articles?url={c.Links.Articles.Href}");
+                await Shell.Current.GoToAsync($"articles?url={c.Links.Articles.Href}");
             }
         }
 
@@ -51,7 +52,7 @@ namespace mtshopcc.Views
 
         private void LoadCategories()
         {
-            Api.Categories(url).ContinueWith(task =>
+            Api.Categories(Url).ContinueWith(task =>
             {
                 var result = task.Result;
                 foreach (var c in result)
