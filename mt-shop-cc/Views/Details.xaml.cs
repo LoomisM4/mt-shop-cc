@@ -1,44 +1,56 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-
+using mt_shop_cc.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace mtshopcc.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Details : ContentPage
+    public partial class Details : ContentPage, IQueryAttributable
     {
-        public ObservableCollection<string> Items { get; set; }
+        private Uri Url { get; set; }
+        
+        public DetailsModel Model { get; set; }
+        
+        public void ApplyQueryAttributes(IDictionary<string, string> query)
+        {
+            this.Url = new Uri(query["url"]);
+        }
 
         public Details()
         {
             InitializeComponent();
 
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
+            Model = new DetailsModel();
 
-            MyListView.ItemsSource = Items;
+            View.BindingContext = Model;
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        protected override void OnAppearing()
         {
-            if (e.Item == null)
-                return;
+            if (Url != null)
+            {
+                var task = Api.ArticleDetails(Url);
+                task.ContinueWith(r =>
+                {
+                    var article = r.Result;
+                    foreach (var link in article.Links.Images)
+                    {
+                        Model.Images.Add(Api.Img(link.Href));
+                    }
+                    Model.Article = article;
+                });
+            }
+            base.OnAppearing();
+        }
 
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+        private void Button_OnClicked(object sender, EventArgs e) {
+            CartObj.Shared().AddArticle(Model.Article);
         }
     }
 }
