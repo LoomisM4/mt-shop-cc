@@ -3,9 +3,16 @@ using QuickType;
 
 public class CartObj
 {
-    private static CartObj cart = new();
+    private static readonly CartObj Cart = new CartObj();
+    
+    private CartObj() {}
 
-    private List<CartArticle> articles = new();
+    public static CartObj Shared()
+    {
+        return Cart;
+    }
+
+    private List<CartArticle> articles = new List<CartArticle>();
 
     public void AddArticle(Article article)
     {

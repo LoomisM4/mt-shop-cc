@@ -59,24 +59,6 @@ namespace QuickType
         public Links Links { get; set; }
     }
 
-    public partial class Details
-    {
-        [JsonProperty("id")]
-        public long Id { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("price")]
-        public double Price { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("_links")]
-        public Links Links { get; set; }
-    }
-
     public partial class Links
     {
         [JsonProperty("spotlightImage")]
@@ -104,14 +86,14 @@ namespace QuickType
         public Uri Href { get; set; }
     }
 
-    public partial class Details
+    public partial class Article
     {
-        public static Details FromJson(string json) => JsonConvert.DeserializeObject<Details>(json, QuickType.Converter.Settings);
+        public static Article FromJson(string json) => JsonConvert.DeserializeObject<Article>(json, QuickType.Converter.Settings);
     }
 
-    public static class SerializeDetails
+    public static class SerializeArticle
     {
-        public static string ToJson(this Details self) => JsonConvert.SerializeObject(self, QuickType.Converter.Settings);
+        public static string ToJson(this Article self) => JsonConvert.SerializeObject(self, QuickType.Converter.Settings);
     }
 
     public partial class Response

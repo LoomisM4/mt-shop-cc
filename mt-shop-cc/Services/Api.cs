@@ -34,10 +34,10 @@ public class Api
         return response.Embedded.Articles;
     }
 
-    public static async Task<Details> ArticleDetails(Uri url)
+    public static async Task<Article> ArticleDetails(Uri url)
     {
         string json = await CacheOrWeb(url);
-        return Details.FromJson(json);
+        return Article.FromJson(json);
     }
 
     public static ImageSource Img(Uri url)
