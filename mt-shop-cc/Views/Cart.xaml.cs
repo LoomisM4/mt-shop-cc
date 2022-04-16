@@ -28,6 +28,7 @@ namespace mtshopcc.Views
         {
             Model.Update();
             MyListView.ItemsSource = Model.Articles;
+            BottomLayout.BindingContext = Model;
             base.OnAppearing();
         }
 
