@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using QuickType;
 
 namespace mt_shop_cc.ViewModels
 {
@@ -21,11 +22,24 @@ namespace mt_shop_cc.ViewModels
             FillModel();
         }
 
+        public void More(Article article)
+        {
+            CartObj.Shared().AddArticle(article);
+            Update();
+        }
+
+        public void Less(Article article)
+        {
+            CartObj.Shared().RemoveArticle(article);
+            Update();
+        }
+
         private void FillModel()
         {
             CartObj.Shared().Articles.ForEach(a => Articles.Add(a));
             TotalPrice = CartObj.Shared().TotalPrice;
             OnPropertyChanged("TotalPrice");
+            OnPropertyChanged("Articles");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

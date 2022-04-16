@@ -3,7 +3,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using mt_shop_cc.ViewModels;
+using QuickType;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -32,9 +34,16 @@ namespace mtshopcc.Views
             base.OnAppearing();
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void LessClicked(object sender, EventArgs e)
         {
-            // TODO
+            var param = ((TappedEventArgs) e).Parameter;
+            Model.Less((Article) param);
+        }
+
+        private async void MoreClicked(object sender, EventArgs e)
+        {
+            var param = ((TappedEventArgs) e).Parameter;
+            Model.More((Article) param);
         }
 
         private void Button_OnPressed(object sender, EventArgs e)
