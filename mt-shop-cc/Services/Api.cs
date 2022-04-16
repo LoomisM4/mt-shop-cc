@@ -43,7 +43,11 @@ public class Api
 
     public static ImageSource Img(Uri url)
     {
-        var source = ImageSource.FromUri(url);
+        var source = new UriImageSource
+        {
+            Uri = url,
+            CachingEnabled = true
+        };
         return source;
     }
 
