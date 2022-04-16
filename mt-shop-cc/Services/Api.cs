@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using QuickType;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 public class Api
@@ -53,12 +54,12 @@ public class Api
         if (response.IsSuccessStatusCode)
         {
             string json = await response.Content.ReadAsStringAsync();
-            // TODO caching
+            Preferences.Set(url.AbsolutePath, json);
             return json;
-        } else
+        }
+        else
         {
-            // TODO aus Cache
-            return null;
+            return Preferences.Get(url.AbsolutePath, null);
         }
     }
 }
