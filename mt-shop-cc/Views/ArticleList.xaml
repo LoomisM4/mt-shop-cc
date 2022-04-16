@@ -2,14 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mtshopcc.Views.ArticleList">
-    <ListView x:Name="ArticlesList"
-              ItemsSource="{Binding Items}"
-              ItemTapped="Handle_ItemTapped"
-              HasUnevenRows="True">
-        <ListView.ItemTemplate>
+    <CollectionView x:Name="ArticlesList" 
+                    ItemsSource="{Binding Items}"
+                    ItemsLayout="VerticalGrid, 2"
+                    SelectionMode="Single"
+                    SelectionChanged="ArticlesList_OnSelectionChanged">
+        <CollectionView.ItemTemplate>
             <DataTemplate>
-                <ImageCell ImageSource="{Binding Image}"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                           Source="{Binding Image}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"/>
+                </Grid>
             </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    
+    
+    
+
 </ContentPage>

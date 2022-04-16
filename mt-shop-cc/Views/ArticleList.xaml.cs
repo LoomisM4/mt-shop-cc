@@ -33,15 +33,6 @@ namespace mtshopcc.Views
             Title = query["title"];
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var model = (ArticleListModel) e.Item;
-            if (model.Article.Links.Details != null)
-            {
-                await Shell.Current.GoToAsync($"details?url={model.Article.Links.Details.Href}&title={model.Article.Name}");
-            }
-        }
-
         protected override void OnAppearing()
         {
             Items.Clear();
@@ -61,6 +52,15 @@ namespace mtshopcc.Views
                 }
             });
             base.OnAppearing();
+        }
+
+        private async void ArticlesList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var model = (ArticleListModel) e.CurrentSelection.First();
+            if (model.Article.Links.Details != null)
+            {
+                await Shell.Current.GoToAsync($"details?url={model.Article.Links.Details.Href}&title={model.Article.Name}");
+            }
         }
     }
 }
