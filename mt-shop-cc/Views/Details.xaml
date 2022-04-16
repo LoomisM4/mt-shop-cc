@@ -12,8 +12,8 @@
               </CarouselView.ItemTemplate>
           </CarouselView>
           <Button Text="In den Warenkorb" Clicked="Button_OnClicked"/>
-          <Label Text="{Binding Article.Name}" />
-          <Label Text="{Binding Article.Description}" />
+          <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" Text="{Binding Article.Name}" />
+          <Label HorizontalOptions="CenterAndExpand" Text="{Binding Article.Description}" />
       </StackLayout>
   </ScrollView>
 </ContentPage>
