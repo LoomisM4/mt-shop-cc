@@ -12,20 +12,24 @@ namespace mtshopcc.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Spotlight : ContentPage
     {
-        public ObservableCollection<Article> Items { get; set; }
+        public ObservableCollection<SpotlightModel> Items { get; set; }
 
         public Spotlight()
         {
             InitializeComponent();
 
-            Items = new ObservableCollection<Article> {};
+            Items = new ObservableCollection<SpotlightModel> {};
 
             MyListView.ItemsSource = Items;
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            // TODO
+            SpotlightModel model = (SpotlightModel) e.Item;
+            if (model.Article.Links.Details != null)
+            {
+                await Shell.Current.GoToAsync($"details?url={model.Article.Links.Details.Href}&title={model.Article.Name}");
+            }
         }
 
         protected override void OnAppearing()
@@ -35,9 +39,14 @@ namespace mtshopcc.Views
             {
                 var articles = r.Result;
                 Items.Clear();
-                for (int i = 0; i < articles.Length; i++)
+                foreach (var a in articles)
                 {
-                    Items.Add(articles[i]);
+                    var model = new SpotlightModel
+                    {
+                        Article = a,
+                        Image = Api.Img(a.Links.SpotlightImage.Href)
+                    };
+                    Items.Add(model);
                 }
             });
             

@@ -20,6 +20,7 @@ namespace mtshopcc.Views
         public void ApplyQueryAttributes(IDictionary<string, string> query)
         {
             this.Url = new Uri(query["url"]);
+            Title = query["title"];
         }
 
         public Details()

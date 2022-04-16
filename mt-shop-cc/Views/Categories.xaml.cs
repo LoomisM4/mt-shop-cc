@@ -28,6 +28,7 @@ namespace mtshopcc.Views
         public void ApplyQueryAttributes(IDictionary<string, string> query)
         {
             Url = new Uri(query["url"]);
+            Title = query["title"];
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -35,16 +36,20 @@ namespace mtshopcc.Views
             Category c = (Category) e.Item;
             if (c.Links.Subcategories != null)
             {
-                await Shell.Current.GoToAsync($"subcategories?url={c.Links.Subcategories.Href}");
+                await Shell.Current.GoToAsync($"subcategories?url={c.Links.Subcategories.Href}&title={c.Name}");
             } 
             else if (c.Links.Articles != null)
             {
-                await Shell.Current.GoToAsync($"articles?url={c.Links.Articles.Href}");
+                await Shell.Current.GoToAsync($"articles?url={c.Links.Articles.Href}&title={c.Name}");
             }
         }
 
         protected override void OnAppearing()
         {
+            if (Title == null)
+            {
+                Title = "Kategorien";
+            }
             Items.Clear();
             LoadCategories();
             base.OnAppearing();
