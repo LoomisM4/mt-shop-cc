@@ -12,56 +12,75 @@ public class CartObj
         return Cart;
     }
 
-    private List<CartArticle> articles = new List<CartArticle>();
+    public List<CartArticle> Articles = new List<CartArticle>();
+    public double TotalPrice { get; set; }
 
     public void AddArticle(Article article)
     {
-        var already = articles.Find(a => a.article.Id == article.Id);
+        var already = Articles.Find(a => a.Article.Id == article.Id);
         if (already != null)
         {
-            already.quantity++;
-        } else
+            already.More();
+        }
+        else
         {
             var cartArticle = new CartArticle(article);
-            articles.Add(cartArticle);
+            Articles.Add(cartArticle);
         }
+        CalcTotalPrice();
     }
 
     public void RemoveArticle(Article article)
     {
-        var already = articles.Find(a => a.article.Id == article.Id);
-        if (already != null && already.quantity > 0)
+        var already = Articles.Find(a => a.Article.Id == article.Id);
+        if (already != null && already.Quantity > 0)
         {
-            already.quantity--;
+            already.Less();
         }
+        CalcTotalPrice();
     }
 
     public void Clear()
     {
-        articles.Clear();
+        Articles.Clear();
     }
 
-    public double CalcTotalPrice()
+    public void CalcTotalPrice()
     {
         double price = 0;
-        articles.ForEach(a => price = price + a.CalcPositionPrice());
-        return price;
+        Articles.ForEach(a => price = price + a.PositionPrice);
+        TotalPrice = price;
     }
 
-    private class CartArticle
+    public class CartArticle
     {
-        public Article article;
-        public int quantity;
+        public Article Article { get; set; }
+        public int Quantity { get; set; }
+        public double PositionPrice { get; set; }
+        
 
         public CartArticle(Article article)
         {
-            this.article = article;
-            this.quantity = 1;
+            this.Article = article;
+            this.Quantity = 1;
+            CalcPositionPrice();
         }
 
-        public double CalcPositionPrice()
+        public void CalcPositionPrice()
         {
-            return article.Price * quantity;
+            PositionPrice = Article.Price * Quantity;
+        }
+
+        public void More()
+        {
+            Quantity++;
+            CalcPositionPrice();
+        }
+
+        public void Less()
+        {
+            Quantity--;
+            CalcPositionPrice();
         }
     }
 }
