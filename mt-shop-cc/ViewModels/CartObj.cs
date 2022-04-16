@@ -43,6 +43,7 @@ public class CartObj
     public void Clear()
     {
         Articles.Clear();
+        CalcTotalPrice();
     }
 
     public void CalcTotalPrice()

@@ -22,6 +22,12 @@ namespace mt_shop_cc.ViewModels
             FillModel();
         }
 
+        public void Clear()
+        {
+            CartObj.Shared().Clear();
+            Update();
+        }
+
         public void More(Article article)
         {
             CartObj.Shared().AddArticle(article);

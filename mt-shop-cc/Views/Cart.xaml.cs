@@ -46,9 +46,10 @@ namespace mtshopcc.Views
             Model.More((Article) param);
         }
 
-        private void Button_OnPressed(object sender, EventArgs e)
+        private async void Button_OnPressed(object sender, EventArgs e)
         {
-            // TODO
+            Model.Clear();
+            await DisplayAlert ("Erfolg", "Die Bestellung wurde abgeschickt", "OK");
         }
     }
 }
