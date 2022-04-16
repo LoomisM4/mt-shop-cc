@@ -14,21 +14,23 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
-                            <Label Text="{Binding Article.Name}"/>
-                            <Label Text="-">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="LessClicked"
-                                                          CommandParameter="{Binding Article}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label Text="{Binding Quantity}"/>
-                            <Label Text="+">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="MoreClicked"
-                                                          CommandParameter="{Binding Article}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label Text="{Binding PositionPrice}"/>
+                            <Label HorizontalOptions="FillAndExpand" Text="{Binding Article.Name}"/>
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                <Label Text="-">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="LessClicked"
+                                                              CommandParameter="{Binding Article}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="{Binding Quantity}"/>
+                                <Label Text="+">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="MoreClicked"
+                                                              CommandParameter="{Binding Article}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            <Label HorizontalOptions="FillAndExpand" Text="{Binding PositionPrice}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
