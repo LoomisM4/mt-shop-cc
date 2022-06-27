@@ -1,55 +1,52 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using mt_shop_cc.ViewModels;
 using QuickType;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace mtshopcc.Views
+namespace mtshopcc.Views // 1
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Cart : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)] // 2
+    public partial class Cart : ContentPage // 1
     {
-        public CartModel Model { get; set; }
+        public CartModel Model { get; set; } // 1
 
-        public Cart()
+        public Cart() // 1
         {
-            InitializeComponent();
+            InitializeComponent(); // 1
 
-            Model = new CartModel();
+            Model = new CartModel(); // 2
 
-            MyListView.ItemsSource = Model.Articles;
-            BottomLayout.BindingContext = Model;
+            MyListView.ItemsSource = Model.Articles; // 3
+            BottomLayout.BindingContext = Model; // 2
         }
 
-        protected override void OnAppearing()
+        protected override void OnAppearing() // 1
         {
-            Model.Update();
-            MyListView.ItemsSource = Model.Articles;
-            BottomLayout.BindingContext = Model;
-            base.OnAppearing();
+            Model.Update(); // 1
+            MyListView.ItemsSource = Model.Articles; // 3
+            BottomLayout.BindingContext = Model; // 2
+            base.OnAppearing(); // 1
         }
 
-        private async void LessClicked(object sender, EventArgs e)
+        private async void LessClicked(object sender, EventArgs e) // 1
         {
-            var param = ((TappedEventArgs) e).Parameter;
-            Model.Less((Article) param);
+            var param = ((TappedEventArgs) e).Parameter; // 3
+            Model.Less((Article) param); // 2
         }
 
-        private async void MoreClicked(object sender, EventArgs e)
+        private async void MoreClicked(object sender, EventArgs e) // 1
         {
-            var param = ((TappedEventArgs) e).Parameter;
-            Model.More((Article) param);
+            var param = ((TappedEventArgs) e).Parameter; // 3
+            Model.More((Article) param); // 2
         }
 
-        private async void Button_OnPressed(object sender, EventArgs e)
+        private async void Button_OnPressed(object sender, EventArgs e) // 1
         {
-            Model.Clear();
-            await DisplayAlert ("Erfolg", "Die Bestellung wurde abgeschickt", "OK");
+            Model.Clear(); // 1
+            await DisplayAlert ("Erfolg", "Die Bestellung wurde abgeschickt", "OK"); // 1
         }
     }
 }
+
+// 37

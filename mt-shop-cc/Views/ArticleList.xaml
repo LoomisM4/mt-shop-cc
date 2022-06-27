@@ -2,31 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mtshopcc.Views.ArticleList">
-    <CollectionView x:Name="ArticlesList" 
+    <CollectionView x:Name="ArticlesList"
                     ItemsSource="{Binding Items}"
                     ItemsLayout="VerticalGrid, 2"
                     SelectionMode="Single"
-                    SelectionChanged="ArticlesList_OnSelectionChanged">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
+                    SelectionChanged="ArticlesList_OnSelectionChanged"> <!-- 6 -->
+        <CollectionView.ItemTemplate> <!-- 1 -->
+            <DataTemplate> <!-- 1 -->
+                <Grid> <!-- 1 -->
+                    <Grid.RowDefinitions> <!-- 1 -->
+                        <RowDefinition Height="Auto" /> <!-- 2 -->
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                    <Grid.ColumnDefinitions> <!-- 1 -->
+                        <ColumnDefinition Width="Auto" /> <!-- 2 -->
+                        <ColumnDefinition Width="Auto" /> <!-- 2 -->
                     </Grid.ColumnDefinitions>
                     <Image
                            Source="{Binding Image}"
                            HorizontalOptions="FillAndExpand"
-                           VerticalOptions="FillAndExpand"/>
+                           VerticalOptions="FillAndExpand"/> <!-- 4 -->
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-    
-    
-    
-
 </ContentPage>
+
+<!-- 21 -->

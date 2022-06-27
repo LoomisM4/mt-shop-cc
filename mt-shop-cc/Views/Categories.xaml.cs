@@ -1,70 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 using QuickType;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace mtshopcc.Views
+namespace mtshopcc.Views // 1
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Categories : ContentPage, IQueryAttributable
+    [XamlCompilation(XamlCompilationOptions.Compile)] // 2
+    public partial class Categories : ContentPage, IQueryAttributable // 1
     {
-        public ObservableCollection<Category> Items { get; set; }
-        private Uri Url { get; set; }
+        public ObservableCollection<Category> Items { get; set; } // 1
+        private Uri Url { get; set; } // 1
 
-        public Categories()
+        public Categories() // 1
         {
-            InitializeComponent();
+            InitializeComponent(); // 1
 
-            Items = new ObservableCollection<Category> {};
+            Items = new ObservableCollection<Category> {}; // 2
             
-            MyListView.ItemsSource = Items;
+            MyListView.ItemsSource = Items; // 2
         }
 
-        public void ApplyQueryAttributes(IDictionary<string, string> query)
+        public void ApplyQueryAttributes(IDictionary<string, string> query) // 1
         {
-            Url = new Uri(query["url"]);
-            Title = query["title"];
+            Url = new Uri(query["url"]); // 3
+            Title = query["title"]; // 2
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e) // 1
         {
-            Category c = (Category) e.Item;
-            if (c.Links.Subcategories != null)
+            Category c = (Category) e.Item; // 3
+            if (c.Links.Subcategories != null) // 4
             {
-                await Shell.Current.GoToAsync($"subcategories?url={c.Links.Subcategories.Href}&title={c.Name}");
+                await Shell.Current.GoToAsync($"subcategories?url={c.Links.Subcategories.Href}&title={c.Name}"); // 6
             } 
-            else if (c.Links.Articles != null)
+            else if (c.Links.Articles != null) // 4
             {
-                await Shell.Current.GoToAsync($"articles?url={c.Links.Articles.Href}&title={c.Name}");
+                await Shell.Current.GoToAsync($"articles?url={c.Links.Articles.Href}&title={c.Name}"); // 6
             }
         }
 
-        protected override void OnAppearing()
+        protected override void OnAppearing() // 1
         {
-            if (Title == null)
+            if (Title == null) // 2
             {
-                Title = "Kategorien";
+                Title = "Kategorien"; // 1
             }
-            Items.Clear();
-            LoadCategories();
-            base.OnAppearing();
+            Items.Clear(); // 1
+            LoadCategories(); // 1
+            base.OnAppearing(); // 1
         }
 
-        private void LoadCategories()
+        private void LoadCategories() // 1
         {
-            Api.Categories(Url).ContinueWith(task =>
+            Api.Categories(Url).ContinueWith(task => // 2
             {
-                var result = task.Result;
-                foreach (var c in result)
+                var result = task.Result; // 2
+                foreach (var c in result) // 2
                 {
-                    Items.Add(c);
+                    Items.Add(c); // 1
                 }
             });
         }
     }
 }
+
+// 57

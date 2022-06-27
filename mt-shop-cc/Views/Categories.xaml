@@ -5,13 +5,14 @@
   <ListView x:Name="MyListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-            
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell TextColor="Black" Text="{Binding Name}" />
+            CachingStrategy="RecycleElement"> <!-- 5 -->
+
+    <ListView.ItemTemplate> <!-- 1 -->
+        <DataTemplate> <!-- 1 -->
+            <TextCell TextColor="Black" Text="{Binding Name}" /> <!-- 3 -->
         </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>
 </ContentPage>
+
+<!-- 10 -->

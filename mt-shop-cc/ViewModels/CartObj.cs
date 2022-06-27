@@ -1,87 +1,89 @@
 ﻿using System.Collections.Generic;
 using QuickType;
 
-public class CartObj
+public class CartObj // 1
 {
-    private static readonly CartObj Cart = new CartObj();
+    private static readonly CartObj Cart = new CartObj(); // 2
     
-    private CartObj() {}
+    private CartObj() {} // 1
 
-    public static CartObj Shared()
+    public static CartObj Shared() // 1
     {
-        return Cart;
+        return Cart; // 1
     }
 
-    public List<CartArticle> Articles = new List<CartArticle>();
-    public double TotalPrice { get; set; }
+    public List<CartArticle> Articles = new List<CartArticle>(); // 2
+    public double TotalPrice { get; set; } // 1
 
-    public void AddArticle(Article article)
+    public void AddArticle(Article article) // 1
     {
-        var already = Articles.Find(a => a.Article.Id == article.Id);
-        if (already != null)
+        var already = Articles.Find(a => a.Article.Id == article.Id); // 6
+        if (already != null) // 2
         {
-            already.More();
+            already.More(); // 1
         }
-        else
+        else // 1
         {
-            var cartArticle = new CartArticle(article);
-            Articles.Add(cartArticle);
+            var cartArticle = new CartArticle(article); // 2
+            Articles.Add(cartArticle); // 1
         }
-        CalcTotalPrice();
+        CalcTotalPrice(); // 1
     }
 
-    public void RemoveArticle(Article article)
+    public void RemoveArticle(Article article) // 1
     {
-        var already = Articles.Find(a => a.Article.Id == article.Id);
-        if (already != null && already.Quantity > 0)
+        var already = Articles.Find(a => a.Article.Id == article.Id); // 6
+        if (already != null && already.Quantity > 0) // 5
         {
-            already.Less();
+            already.Less(); // 1
         }
-        CalcTotalPrice();
+        CalcTotalPrice(); // 1
     }
 
-    public void Clear()
+    public void Clear() // 1
     {
-        Articles.Clear();
-        CalcTotalPrice();
+        Articles.Clear(); // 1
+        CalcTotalPrice(); // 1
     }
 
-    public void CalcTotalPrice()
+    public void CalcTotalPrice() // 1
     {
-        double price = 0;
-        Articles.ForEach(a => price = price + a.PositionPrice);
-        TotalPrice = price;
+        double price = 0; // 1
+        Articles.ForEach(a => price += a.PositionPrice); // 3
+        TotalPrice = price; // 1
     }
 
-    public class CartArticle
+    public class CartArticle // 1
     {
-        public Article Article { get; set; }
-        public int Quantity { get; set; }
-        public double PositionPrice { get; set; }
+        public Article Article { get; set; } // 1
+        public int Quantity { get; set; } // 1
+        public double PositionPrice { get; set; } // 1
         
 
-        public CartArticle(Article article)
+        public CartArticle(Article article) // 1
         {
-            this.Article = article;
-            this.Quantity = 1;
-            CalcPositionPrice();
+            Article = article; // 1
+            Quantity = 1; // 1
+            CalcPositionPrice(); // 1
         }
 
-        public void CalcPositionPrice()
+        public void CalcPositionPrice() // 1
         {
-            PositionPrice = Article.Price * Quantity;
+            PositionPrice = Article.Price * Quantity; // 3
         }
 
-        public void More()
+        public void More() // 1
         {
-            Quantity++;
-            CalcPositionPrice();
+            Quantity++; // 1
+            CalcPositionPrice(); // 1
         }
 
-        public void Less()
+        public void Less() // 1
         {
-            Quantity--;
-            CalcPositionPrice();
+            Quantity--; // 1
+            CalcPositionPrice(); // 1
         }
     }
 }
+
+// 65

@@ -7,9 +7,9 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Primary">White</Color> <!-- 1 -->
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="Black"></Setter> <!-- 1 -->
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -20,7 +20,7 @@
                             </VisualState>
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                    <Setter Property="BackgroundColor" Value="White" /> <!-- 1 -->
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -30,3 +30,5 @@
         </ResourceDictionary>        
     </Application.Resources>
 </Application>
+
+<!-- 3 -->

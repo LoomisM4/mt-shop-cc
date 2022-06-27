@@ -29,3 +29,8 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.Internet)]
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
 [assembly: Application(UsesCleartextTraffic = true)]
+[assembly: UsesPermission(Android.Manifest.Permission.AccessCoarseLocation)] // 5
+[assembly: UsesPermission(Android.Manifest.Permission.AccessFineLocation)] // 5
+[assembly: UsesFeature("android.hardware.location.gps", Required = false)] // 3
+
+// 13

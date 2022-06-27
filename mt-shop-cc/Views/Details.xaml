@@ -2,18 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mtshopcc.Views.Details">
-  <ScrollView x:Name="View">
-      <StackLayout>
-          <CarouselView ItemsSource="{Binding Images}">
-              <CarouselView.ItemTemplate>
-                  <DataTemplate>
-                      <Image Source="{Binding .}"/>
+  <ScrollView x:Name="View"> <!-- 2 -->
+      <StackLayout> <!-- 1 -->
+          <CarouselView ItemsSource="{Binding Images}"> <!-- 2 -->
+              <CarouselView.ItemTemplate> <!-- 1 -->
+                  <DataTemplate> <!-- 1 -->
+                      <Image Source="{Binding .}"/> <!-- 2 -->
                   </DataTemplate>
               </CarouselView.ItemTemplate>
           </CarouselView>
-          <Button Text="In den Warenkorb" Clicked="Button_OnClicked"/>
-          <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" Text="{Binding Article.Name}" />
-          <Label HorizontalOptions="CenterAndExpand" Text="{Binding Article.Description}" />
+          <Button Text="In den Warenkorb" Clicked="Button_OnClicked"/> <!-- 3 -->
+          <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" Text="{Binding Article.Name}" /> <!-- 6 -->
+          <Label HorizontalOptions="CenterAndExpand" Text="{Binding Article.Description}" /> <!-- 4 -->
       </StackLayout>
   </ScrollView>
 </ContentPage>
+
+<!-- 22 -->

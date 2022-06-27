@@ -1,44 +1,35 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
-namespace mtshopcc.Views
+namespace mtshopcc.Views // 1
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Map : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)] // 2
+    public partial class Map : ContentPage // 1
     {
-        public ObservableCollection<string> Items { get; set; }
-
-        public Map()
+        public Xamarin.Forms.Maps.Map MapObj; // 1
+        public Map() // 1
         {
-            InitializeComponent();
-
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
-
-            MyListView.ItemsSource = Items;
+            InitializeComponent(); // 1
+            MapObj = new Xamarin.Forms.Maps.Map(); // 4
+            MapObj.IsShowingUser = true; // 2
+            Content = MapObj; // 1
+            
+            GetStore(); // 1
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void GetStore() // 1
         {
-            if (e.Item == null)
-                return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+            var location = await Geolocation.GetLocationAsync(); // 2
+            var pin = new Pin // 2
+            {
+                Label = "", // 1
+                Position = new Position(location.Latitude, location.Longitude) // 4
+            };
+            MapObj.Pins.Add(pin); // 2
         }
     }
 }
+
+// 27

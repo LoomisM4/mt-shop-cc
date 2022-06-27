@@ -2,22 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mtshopcc.Views.Spotlight"
-             Title="Spotlight">
+             Title="Spotlight"> <!-- 1 -->
   <ListView x:Name="MyListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
-            HasUnevenRows="True">
-            
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <ViewCell>
+            HasUnevenRows="True"> <!-- 6 -->
+
+    <ListView.ItemTemplate> <!-- 1 -->
+        <DataTemplate> <!-- 1 -->
+            <ViewCell> <!-- 1 -->
                 <Image Source="{Binding Image}"
                        HorizontalOptions="FillAndExpand"
-                       VerticalOptions="FillAndExpand" />
+                       VerticalOptions="FillAndExpand" /> <!-- 4 -->
             </ViewCell>
         </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>
 </ContentPage>
+
+<!-- 14 -->

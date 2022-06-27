@@ -2,46 +2,47 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mtshopcc.Views.Cart"
-             Title="Warenkorb">
-    <StackLayout>
+             Title="Warenkorb"> <!-- 1 -->
+    <StackLayout> <!-- 1 -->
         <ListView x:Name="MyListView"
                   ItemsSource="{Binding Model.Articles}"
-                  CachingStrategy="RecycleElement">
+                  CachingStrategy="RecycleElement"> <!-- 5 -->
             
-            <!--Built in Cells-->
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
+            <ListView.ItemTemplate> <!-- 1 -->
+                <DataTemplate> <!-- 1 -->
+                    <ViewCell> <!-- 1 -->
                         <StackLayout Orientation="Horizontal"
-                                     HorizontalOptions="FillAndExpand">
-                            <Label HorizontalOptions="FillAndExpand" Text="{Binding Article.Name}"/>
-                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                <Label Text="-">
-                                    <Label.GestureRecognizers>
+                                     HorizontalOptions="FillAndExpand"> <!-- 3 -->
+                            <Label HorizontalOptions="FillAndExpand" Text="{Binding Article.Name}"/> <!-- 4 -->
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal"> <!-- 3 -->
+                                <Label Text="-"> <!-- 2 -->
+                                    <Label.GestureRecognizers> <!-- 1 -->
                                         <TapGestureRecognizer Tapped="LessClicked"
-                                                              CommandParameter="{Binding Article}"/>
+                                                              CommandParameter="{Binding Article}"/> <!-- 3 -->
                                     </Label.GestureRecognizers>
                                 </Label>
-                                <Label Text="{Binding Quantity}"/>
-                                <Label Text="+">
-                                    <Label.GestureRecognizers>
+                                <Label Text="{Binding Quantity}"/> <!-- 2 -->
+                                <Label Text="+"> <!-- 2 -->
+                                    <Label.GestureRecognizers> <!-- 1 -->
                                         <TapGestureRecognizer Tapped="MoreClicked"
-                                                              CommandParameter="{Binding Article}"/>
+                                                              CommandParameter="{Binding Article}"/> <!-- 3 -->
                                     </Label.GestureRecognizers>
                                 </Label>
                             </StackLayout>
-                            <Label HorizontalOptions="FillAndExpand" Text="{Binding PositionPrice}"/>
+                            <Label HorizontalOptions="FillAndExpand" Text="{Binding PositionPrice}"/> <!-- 3 -->
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackLayout x:Name="BottomLayout">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Preis: "/>
-                <Label Text="{Binding TotalPrice}"/>
+        <StackLayout x:Name="BottomLayout"> <!-- 2 -->
+            <StackLayout Orientation="Horizontal"> <!-- 2 -->
+                <Label Text="Preis: "/> <!-- 2 -->
+                <Label Text="{Binding TotalPrice}"/> <!-- 2 -->
             </StackLayout>
-            <Button Text="Zahlungspflichtig bestellen" Pressed="Button_OnPressed"/>
+            <Button Text="Zahlungspflichtig bestellen" Pressed="Button_OnPressed"/> <!-- 3 -->
         </StackLayout>
     </StackLayout>
 </ContentPage>
+
+<!-- 48 -->

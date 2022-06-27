@@ -1,57 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 using mt_shop_cc.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace mtshopcc.Views
+namespace mtshopcc.Views // 1
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Details : ContentPage, IQueryAttributable
+    [XamlCompilation(XamlCompilationOptions.Compile)] // 2
+    public partial class Details : ContentPage, IQueryAttributable // 1
     {
-        private Uri Url { get; set; }
+        private Uri Url { get; set; } // 1
         
-        public DetailsModel Model { get; set; }
+        public DetailsModel Model { get; set; } // 1
         
-        public void ApplyQueryAttributes(IDictionary<string, string> query)
+        public void ApplyQueryAttributes(IDictionary<string, string> query) // 1
         {
-            this.Url = new Uri(query["url"]);
-            Title = query["title"];
+            Url = new Uri(query["url"]); // 3
+            Title = query["title"]; // 2
         }
 
-        public Details()
+        public Details() // 1
         {
-            InitializeComponent();
+            InitializeComponent(); // 1
 
-            Model = new DetailsModel();
+            Model = new DetailsModel(); // 2
 
-            View.BindingContext = Model;
+            View.BindingContext = Model; // 2
         }
 
-        protected override void OnAppearing()
+        protected override void OnAppearing() // 1
         {
-            if (Url != null)
+            if (Url != null) // 2
             {
-                var task = Api.ArticleDetails(Url);
-                task.ContinueWith(r =>
+                var task = Api.ArticleDetails(Url); // 2
+                task.ContinueWith(r => // 1
                 {
-                    var article = r.Result;
-                    foreach (var link in article.Links.Images)
+                    var article = r.Result; // 2
+                    foreach (var link in article.Links.Images) // 4
                     {
-                        Model.Images.Add(Api.Img(link.Href));
+                        Model.Images.Add(Api.Img(link.Href)); // 4
                     }
-                    Model.Article = article;
+                    Model.Article = article; // 2
                 });
             }
-            base.OnAppearing();
+            base.OnAppearing(); // 1
         }
 
-        private void Button_OnClicked(object sender, EventArgs e) {
-            CartObj.Shared().AddArticle(Model.Article);
+        private void Button_OnClicked(object sender, EventArgs e) { // 1
+            CartObj.Shared().AddArticle(Model.Article); // 3
         }
     }
 }
+
+// 41

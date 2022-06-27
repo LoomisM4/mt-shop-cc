@@ -10,10 +10,12 @@ namespace mt_shop_cc
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("details", typeof(Details));
-            Routing.RegisterRoute("subcategories", typeof(Categories));
-            Routing.RegisterRoute("articles", typeof(ArticleList));
+            Routing.RegisterRoute("details", typeof(Details)); // 2
+            Routing.RegisterRoute("subcategories", typeof(Categories)); // 2
+            Routing.RegisterRoute("articles", typeof(ArticleList)); // 2
         }
 
     }
 }
+
+// 6

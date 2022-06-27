@@ -3,56 +3,58 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using QuickType;
 
-namespace mt_shop_cc.ViewModels
+namespace mt_shop_cc.ViewModels // 1
 {
-    public class CartModel : INotifyPropertyChanged
+    public class CartModel : INotifyPropertyChanged // 1
     {
-        public ObservableCollection<CartObj.CartArticle> Articles { get; set; }
-        public double TotalPrice { get; set; }
+        public ObservableCollection<CartObj.CartArticle> Articles { get; } // 1
+        public double TotalPrice { get; set; } // 1
 
-        public CartModel()
+        public CartModel() // 1
         {
-            Articles = new ObservableCollection<CartObj.CartArticle>();
-            FillModel();
+            Articles = new ObservableCollection<CartObj.CartArticle>(); // 3
+            FillModel(); // 1
         }
 
-        public void Update()
+        public void Update() // 1
         {
-            Articles.Clear();
-            FillModel();
+            Articles.Clear(); // 1
+            FillModel(); // 1
         }
 
-        public void Clear()
+        public void Clear() // 1
         {
-            CartObj.Shared().Clear();
-            Update();
+            CartObj.Shared().Clear(); // 2
+            Update(); // 1
         }
 
-        public void More(Article article)
+        public void More(Article article) // 1
         {
-            CartObj.Shared().AddArticle(article);
-            Update();
+            CartObj.Shared().AddArticle(article); // 2
+            Update(); // 1
         }
 
-        public void Less(Article article)
+        public void Less(Article article) // 1
         {
-            CartObj.Shared().RemoveArticle(article);
-            Update();
+            CartObj.Shared().RemoveArticle(article); // 2
+            Update(); // 1
         }
 
-        private void FillModel()
+        private void FillModel() // 1
         {
-            CartObj.Shared().Articles.ForEach(a => Articles.Add(a));
-            TotalPrice = CartObj.Shared().TotalPrice;
-            OnPropertyChanged("TotalPrice");
-            OnPropertyChanged("Articles");
+            CartObj.Shared().Articles.ForEach(a => Articles.Add(a)); // 4
+            TotalPrice = CartObj.Shared().TotalPrice; // 3
+            OnPropertyChanged("TotalPrice"); // 1
+            OnPropertyChanged("Articles"); // 1
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged; // 1
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) // 1
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); // 2
         }
     }
 }
+
+// 38

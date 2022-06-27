@@ -9,14 +9,14 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.ForegroundColor" Value="Black" /> <!-- 1 -->
+                <Setter Property="Shell.TitleColor" Value="Black" /> <!-- 1 -->
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="Black"/> <!-- 1 -->
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="Black"/> <!-- 1 -->
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -24,9 +24,11 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Spotlight" Icon="star.png" Route="Spotlight" ContentTemplate="{DataTemplate local:Spotlight}" />
-        <ShellContent Title="Kategorien" Icon="list.png" ContentTemplate="{DataTemplate local:Categories}" />
-        <ShellContent Title="Warenkorb" Icon="cart.png" Route="AboutPage" ContentTemplate="{DataTemplate local:Cart}" />
-        <ShellContent Title="Umgebung" Icon="map.png" ContentTemplate="{DataTemplate local:Map}" />
+        <ShellContent Title="Spotlight" Icon="star.png" Route="Spotlight" ContentTemplate="{DataTemplate local:Spotlight}" /> <!-- 6 -->
+        <ShellContent Title="Kategorien" Icon="list.png" ContentTemplate="{DataTemplate local:Categories}" /> <!-- 5 -->
+        <ShellContent Title="Warenkorb" Icon="cart.png" Route="AboutPage" ContentTemplate="{DataTemplate local:Cart}" /> <!-- 6 -->
+        <ShellContent Title="Umgebung" Icon="map.png" ContentTemplate="{DataTemplate local:Map}" /> <!-- 5 -->
     </TabBar>
 </Shell>
+
+<!-- 26 -->

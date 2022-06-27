@@ -1,0 +1,33 @@
+mt-shop-cc                                      643
+    Models/                             11
+        Response.cs             11
+    Services/                           65
+        Api.cs                  65
+    ViewModels/                         124
+        ArticleListModel.cs     4
+        CartModel.cs            38
+        CartObj.cs              65
+        DetailsModel.cs         14
+        SpotlightModel.cs       3
+    Views/                              389
+        ArticleList.xaml        21
+        ArticleList.xaml.cs     61
+        Cart.xaml               48
+        Cart.xaml.cs            37
+        Categories.xaml         10
+        Categories.xaml.cs      57
+        Details.xaml            22
+        Details.xaml.cs         41
+        Map.xaml                4
+        Map.xaml.cs             27
+        Spotlight.xaml          14
+        Spotlight.xaml.cs       47
+    App.xaml                            3
+    AppShell.xaml                       26
+    AppShell.xaml.cs                    6
+
+    Android                             17
+        AndroidManifest.xml     4
+        AssemblyInfo.cs         13
+    iOS                                 2
+        Info.plist              2
